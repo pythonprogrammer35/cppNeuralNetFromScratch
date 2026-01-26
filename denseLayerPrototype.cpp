@@ -3,6 +3,7 @@
 #include <cmath>
 #include <random>
 #include <chrono>
+#include "matrixMultiply.cpp"
 
 class Dense{
     public:
@@ -46,13 +47,32 @@ class Dense{
             biases = std::vector<double>(ncols, 0.0);
         }
 
-        /*std::vector<std::vector<double>> forwardPass(){
+        std::vector<std::vector<double>> forwardPass(std::vector<std::vector<double>> input){
+            std::vector<std::vector<double>> resultedMatrix = matrixMult(input, weights);
+            printMatrix(resultedMatrix);
+            resultedMatrix = biasAdd(resultedMatrix, biases);
+            return resultedMatrix;
             
         }
         //might change later if needed
-        std::vector<std::vector<double>> backwardPass(){
+        /*std::vector<std::vector<double>> backwardPass(){
             return nullptr;
         }*/
+
+        void printMatrix(std::vector<std::vector<double>> inputMatrix){
+            std::string holder = "";
+            std::string holder2 = "{";
+            for (int i = 0; i<inputMatrix.size(); i++){
+                for(int j = 0; j<inputMatrix[0].size(); j++){
+                    holder2 += std::to_string(inputMatrix[i][j]);
+                    holder2 += ",";
+                }
+                holder += holder2;
+                holder += "}";
+                holder2 = "{";
+            }
+            std::cout << holder;
+        }
         void printWeights(){
             std::string holder = "";
             std::string holder2 = "{";
@@ -81,9 +101,12 @@ class Dense{
 };
 
 int main(){
-    Dense layer(10,10);
-    layer.printWeights();
+    Dense layer(4,10);
+    //layer.printWeights();
     std::cout << " " << std::endl;
-    layer.printBiases();
+    //layer.printBiases();
+    std::vector<std::vector<double>> input;
+    input.push_back({0,1,0,0});
+    layer.forwardPass(input);
 
 }

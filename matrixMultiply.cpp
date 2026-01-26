@@ -1,112 +1,62 @@
 #include <iostream>
 #include <vector>
-#include <cmath>
-#include <random>
-#include <chrono>
-#include "matrixMultiply.cpp"
 
-class Dense{
-    public:
-        std::vector<std::vector<double>> weights;
-        std::vector<double> biases;
-        int rows;
-        int cols;
 
-        Dense(int rowsInput, int colsInput){
-            rows = rowsInput;
-            cols = colsInput;
-            generateWeights(rows, cols);
-            generateBiases(cols);
-            
-        }
+std::vector<std::vector<double>> matrixMult(std::vector<std::vector<double>> vector1, std::vector<std::vector<double>> vector2){
+    std::vector<double> vect1;
+    std::vector<double> vect2;
+    double holder = 0;
+    std::vector<std::vector<double>> result(vector1.size(), std::vector<double>(vector2[0].size(), 0));
 
-        void generateWeights(int nrows, int ncols){
-            for(int i = 0; i < nrows; i++){
-                std::vector<double> holderWeight;
-                weights.push_back(holderWeight);
+    // for every row in vector1, go through every value in every column of vector2
+    for(int i = 0; i<vector1.size(); i++){
+        vect1 = vector1[i];
+        for(int j = 0; j<vector2[0].size(); j++){
+            //This part is where the calculation is run
+            for(int k = 0; k < vector2.size(); k++){
+                holder += vect1[k] * vector2[k][j];
             }
-            double std_dev = std::sqrt(2.0/double(nrows));
-            unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
-
-            std::mt19937 gen(seed);
-
-            std::normal_distribution<double> distrib(0.0, std_dev);
-
-            double random_num;
-            for(int i = 0; i < weights.size(); i++){
-                for(int j = 0; j < ncols; j++){
-                    random_num = (distrib(gen)) * std_dev;
-                    weights[i].push_back(random_num);
-                }
-            }
-
-            
+            result[i][j] = holder;
+            holder = 0;
         }
-        void generateBiases(int ncols){
-            
-            biases = std::vector<double>(ncols, 0.0);
-        }
-
-        std::vector<std::vector<double>> forwardPass(std::vector<std::vector<double>> input){
-            std::vector<std::vector<double>> resultedMatrix = matrixMult(input, weights);
-            printMatrix(resultedMatrix);
-            resultedMatrix = biasAdd(resultedMatrix, biases);
-            return resultedMatrix;
-            
-        }
-        //might change later if needed
-        /*std::vector<std::vector<double>> backwardPass(){
-            return nullptr;
-        }*/
-
-        void printMatrix(std::vector<std::vector<double>> inputMatrix){
-            std::string holder = "";
-            std::string holder2 = "{";
-            for (int i = 0; i<inputMatrix.size(); i++){
-                for(int j = 0; j<inputMatrix[0].size(); j++){
-                    holder2 += std::to_string(inputMatrix[i][j]);
-                    holder2 += ",";
-                }
-                holder += holder2;
-                holder += "}";
-                holder2 = "{";
-            }
-            std::cout << holder;
-        }
-        void printWeights(){
-            std::string holder = "";
-            std::string holder2 = "{";
-            for (int i = 0; i<weights.size(); i++){
-                for(int j = 0; j<weights[0].size(); j++){
-                    holder2 += std::to_string(weights[i][j]);
-                    holder2 += ",";
-                }
-                holder += holder2;
-                holder += "}";
-                holder2 = "{";
-            }
-            std::cout << holder;
-        }
-        void printBiases(){
-            std::string holder = "";
-            std::string holder2 = "{";
-            for (int i = 0; i<biases.size(); i++){
-                holder2 += std::to_string(biases[i]);
-                holder2 += ",";
-            }
-            holder += holder2;
-            holder += "}";
-            std::cout << holder;
-        }
-};
-
-int main(){
-    Dense layer(4,10);
-    //layer.printWeights();
-    std::cout << " " << std::endl;
-    //layer.printBiases();
-    std::vector<std::vector<double>> input;
-    input.push_back({0,1,0,0});
-    layer.forwardPass(input);
-
+    }
+    return result;
 }
+
+std::vector<std::vector<double>> biasAdd(std::vector<std::vector<double>> vector1, std::vector<double> vector2){
+    std::vector<std::vector<double>> result = vector1;
+
+    for (int i = 0; i<vector1.size(); i++){
+        for(int j = 0; j<vector1[0].size(); j++){
+            vector1[i][j] += vector2[j];
+        }
+    }
+    return result;
+}
+/*
+int main(){
+    std::vector<std::vector<double>> tester1 = {
+        {3,2,1},
+        {4,3,2}
+        
+    };
+    std::vector<std::vector<double>> tester2 = {
+        {1,4,2},
+        {2,6,2},
+        {3,3,2}
+    };
+    std::vector<std::vector<double>> output = matrixMult(tester1, tester2);
+
+    std::string holder = "";
+    std::string holder2 = "{";
+    for (int i = 0; i<output.size(); i++){
+        for(int j = 0; j<output[0].size(); j++){
+            holder2 += std::to_string(output[i][j]);
+            holder2 += ",";
+        }
+        holder += holder2;
+        holder += "}";
+        holder2 = "{";
+    }
+    std::cout << holder;
+}*/

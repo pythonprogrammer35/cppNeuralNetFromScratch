@@ -33,8 +33,19 @@ std::vector<std::vector<double>> biasAdd(std::vector<std::vector<double>> vector
     }
     return result;
 }
-/*
-int main(){
+
+std::vector<std::vector<double>> transpose(std::vector<std::vector<double>> matrix){
+    std::vector<std::vector<double>> result(matrix[0].size(), std::vector<double>(matrix.size(), 0));
+
+    for(int i = 0; i<matrix.size(); i++){
+        for(int j = 0; j<matrix[0].size(); j++){
+            result[j][i] = matrix[i][j];
+        }
+    }
+    return result;
+}
+
+/*int main(){
     std::vector<std::vector<double>> tester1 = {
         {3,2,1},
         {4,3,2}
@@ -45,7 +56,7 @@ int main(){
         {2,6,2},
         {3,3,2}
     };
-    std::vector<std::vector<double>> output = matrixMult(tester1, tester2);
+    std::vector<std::vector<double>> output = transpose(tester1);
 
     std::string holder = "";
     std::string holder2 = "{";
@@ -59,4 +70,20 @@ int main(){
         holder2 = "{";
     }
     std::cout << holder;
+
+    output = transpose(output);
+
+    holder = "";
+    holder2 = "{";
+    for (int i = 0; i<output.size(); i++){
+        for(int j = 0; j<output[0].size(); j++){
+            holder2 += std::to_string(output[i][j]);
+            holder2 += ",";
+        }
+        holder += holder2;
+        holder += "}";
+        holder2 = "{";
+    }
+    std::cout << holder;
+
 }*/

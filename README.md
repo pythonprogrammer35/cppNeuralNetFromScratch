@@ -14,7 +14,6 @@ The goal of this project is to demystify the "black box" of AI by manually imple
 * **Modular Layer Architecture**: Dynamic `Dense` layers supporting variable input/output sizes.
 * **Activation Functions**:
     * **ReLU**: With He Initialization for hidden layers.
-    * **Sigmoid**: For binary classification outputs.
 * **Optimization**: Stochastic Gradient Descent (SGD) with Mean Squared Error (MSE) loss.
 * **No External Dependencies**: Uses only the C++ Standard Library.
 

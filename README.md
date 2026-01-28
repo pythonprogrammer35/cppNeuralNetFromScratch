@@ -51,7 +51,7 @@ Thanks to this we see that ($\frac{\partial E}{\partial B}$) is simply equal to 
 
 **Gradient of Inputs ($\frac{\partial E}{\partial X}$):**
 To pass error to the previous layer, we multiply the Incoming Error by the Transposed Weights.
-$$\frac{\partial E}{\partial X} = \frac{\partial E}{\partial Y} \cdot W^T$$
+$$\frac{\partial E}{\partial X} =  W \cdot \frac{\partial E}{\partial Y}^T$$
 * *Dimensional Logic:* $(Batch \times Outputs) \cdot (Outputs \times Inputs) \rightarrow (Batch \times Inputs)$
 
 ---

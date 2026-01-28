@@ -1,3 +1,4 @@
+#pragma once  
 #include <iostream>
 #include <vector>
 #include <cmath>
@@ -6,7 +7,7 @@
 #include "vectorFunctions.cpp"
 #include "Layer.cpp"
 
-class activationLayer{
+class activationLayer: public Layer{
     public:
         std::vector<std::vector<double>> input;
         std::string layerChoice;
@@ -22,6 +23,7 @@ class activationLayer{
             } else if(layerChoice == "Sigmoid"){
                 return(Sigmoid(passedMatrix));
             }
+            return(Sigmoid(passedMatrix));
             
         }
 
@@ -86,3 +88,4 @@ class activationLayer{
             return input;
         }
 };
+

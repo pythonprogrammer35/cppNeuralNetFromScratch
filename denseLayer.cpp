@@ -3,14 +3,17 @@
 #include <cmath>
 #include <random>
 #include <chrono>
-#include "matrixMultiply.cpp"
+#include "vectorFunctions.cpp"
+#include "Layer.cpp"
 
-class Dense{
+class Dense: Layer{
     public:
         std::vector<std::vector<double>> weights;
-        std::vector<double> biases;
+        std::vector<std::vector<double>> biases;
         int rows;
         int cols;
+        int batch_size = 1;
+        std::vector<std::vector<double>> input;
 
         Dense(int rowsInput, int colsInput){
             rows = rowsInput;
@@ -44,10 +47,13 @@ class Dense{
         }
         void generateBiases(int ncols){
             
-            biases = std::vector<double>(ncols, 0.0);
+            std::vector<std::vector<double>> holder(batch_size, std::vector<double>(ncols, 0));
+            this->biases = holder;
         }
 
-        std::vector<std::vector<double>> forwardPass(std::vector<std::vector<double>> input){
+
+        std::vector<std::vector<double>> forward(std::vector<std::vector<double>> input) override {
+            this->input = input;
             std::vector<std::vector<double>> resultedMatrix = matrixMult(input, weights);
             printMatrix(resultedMatrix);
             resultedMatrix = biasAdd(resultedMatrix, biases);
@@ -55,9 +61,14 @@ class Dense{
             
         }
         //might change later if needed
-        /*std::vector<std::vector<double>> backwardPass(){
-            return nullptr;
-        }*/
+        std::vector<std::vector<double>> backward(std::vector<std::vector<double>> derivativeYMatrix, double learning_rate) override {
+            std::vector<std::vector<double>> derivativeXMatrix = matrixMult(weights, transpose(derivativeYMatrix));
+            std::vector<std::vector<double>> derivativeWMatrix = matrixMult(transpose(this->input),derivativeYMatrix);
+            derivativeWMatrix = elementMulti(derivativeWMatrix, learning_rate);
+            this->weights = elementSubtract(weights, derivativeWMatrix);
+            this->biases = derivativeYMatrix;
+            return transpose(derivativeXMatrix); 
+        }
 
         void printMatrix(std::vector<std::vector<double>> inputMatrix){
             std::string holder = "";
@@ -91,22 +102,35 @@ class Dense{
             std::string holder = "";
             std::string holder2 = "{";
             for (int i = 0; i<biases.size(); i++){
-                holder2 += std::to_string(biases[i]);
-                holder2 += ",";
+                for(int j = 0; j<biases[0].size(); j++){
+                    holder2 += std::to_string(biases[i][j]);
+                    holder2 += ",";
+                }
+                holder += holder2;
+                holder += "}";
+                holder2 = "{";
             }
-            holder += holder2;
-            holder += "}";
             std::cout << holder;
         }
 };
-
+/*
 int main(){
     Dense layer(4,10);
-    //layer.printWeights();
+    layer.printWeights();
     std::cout << " " << std::endl;
     //layer.printBiases();
-    std::vector<std::vector<double>> input;
-    input.push_back({0,1,0,0});
-    layer.forwardPass(input);
+    std::vector<std::vector<double>> input = {
+        {0,1,0,0},   
+    };
 
-}
+    std::vector<std::vector<double>> output = {
+        {0,0,1,0,0,0,0,0,0,0},   
+    };
+    layer.forwardPass(input);
+    std::vector<std::vector<double>> holder = layer.backwardPass(output, 0.001);
+    layer.printWeights();
+    std::cout << "heeey";
+    printMatrix(holder);
+    
+
+}*/

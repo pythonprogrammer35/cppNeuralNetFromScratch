@@ -46,6 +46,10 @@ To calculate the weight update, we multiply the Transposed Input by the Incoming
 $$\frac{\partial E}{\partial W} = X^T \cdot \frac{\partial E}{\partial Y}$$
 * *Dimensional Logic:* $(Inputs \times Batch) \cdot (Batch \times Outputs) \rightarrow (Inputs \times Outputs)$
 
+**Gradient of Weights ($\frac{\partial E}{\partial B}$):**
+To calculate the bias update, we can see from the chain rule that when we derive with respect to b, we see that all b's in the equations become 1. 
+Thanks to this we see that ($\frac{\partial E}{\partial B}$) is simply equal to ($\frac{\partial E}{\partial Y}$)
+
 **Gradient of Inputs ($\frac{\partial E}{\partial X}$):**
 To pass error to the previous layer, we multiply the Incoming Error by the Transposed Weights.
 $$\frac{\partial E}{\partial X} = \frac{\partial E}{\partial Y} \cdot W^T$$

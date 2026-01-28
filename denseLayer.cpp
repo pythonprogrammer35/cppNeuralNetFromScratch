@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include <vector>
 #include <cmath>
@@ -6,7 +7,7 @@
 #include "vectorFunctions.cpp"
 #include "Layer.cpp"
 
-class Dense: Layer{
+class Dense: public Layer{
     public:
         std::vector<std::vector<double>> weights;
         std::vector<std::vector<double>> biases;
@@ -68,21 +69,6 @@ class Dense: Layer{
             this->weights = elementSubtract(weights, derivativeWMatrix);
             this->biases = derivativeYMatrix;
             return transpose(derivativeXMatrix); 
-        }
-
-        void printMatrix(std::vector<std::vector<double>> inputMatrix){
-            std::string holder = "";
-            std::string holder2 = "{";
-            for (int i = 0; i<inputMatrix.size(); i++){
-                for(int j = 0; j<inputMatrix[0].size(); j++){
-                    holder2 += std::to_string(inputMatrix[i][j]);
-                    holder2 += ",";
-                }
-                holder += holder2;
-                holder += "}";
-                holder2 = "{";
-            }
-            std::cout << holder;
         }
         void printWeights(){
             std::string holder = "";

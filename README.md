@@ -50,7 +50,7 @@ To calculate the bias update, we can see from the chain rule that when we derive
 Thanks to this we see that ($\frac{\partial E}{\partial B}$) is simply equal to ($\frac{\partial E}{\partial Y}$)
 
 **Gradient of Inputs ($\frac{\partial E}{\partial X}$):**
-To pass error to the previous layer, we multiply the Incoming Error by the Transposed Weights.
+To pass error to the previous layer, we multiply Weights by the Incoming Error Transposed and then transpose the finale result.
 $$\frac{\partial E}{\partial X} =  W \cdot \frac{\partial E}{\partial Y}^T$$ and then transpose the final result to give us a row vector to pass backwards
 * *Dimensional Logic:* $(Batch \times Outputs) \cdot (Outputs \times Inputs) \rightarrow (Batch \times Inputs)$
 

@@ -8,7 +8,7 @@ A high-performance, fully connected Deep Neural Network (DNN) implemented entire
 
 The goal of this project is to demystify the "black box" of AI by manually implementing the core mathematical engines: Matrix Calculus, Backpropagation, and Gradient Descent.
 
-## 🚀 Features
+## Features
 
 * **Custom Matrix Engine**: A linear algebra library built from scratch handling dot products, transpositions, and element-wise operations.
 * **Modular Layer Architecture**: Dynamic `Dense` layers supporting variable input/output sizes.
@@ -19,7 +19,7 @@ The goal of this project is to demystify the "black box" of AI by manually imple
 
 ---
 
-## 🧠 Mathematical Implementation
+## Mathematical Implementation
 
 This project follows the **Row-Major** convention used by standard frameworks (TensorFlow/PyTorch) for memory efficiency with batch processing.
 

@@ -12,7 +12,7 @@ The goal of this project is to demystify the "black box" of AI by manually imple
 
 * **Custom Matrix Engine**: A linear algebra library built from scratch handling dot products, transpositions, and element-wise operations.
 * **Modular Layer Architecture**: Dynamic `Dense` layers supporting variable input/output sizes.
-* **Activation Functions**:
+* **Activation Function**:
     * **ReLU**: With He Initialization for hidden layers.
 * **Optimization**: Stochastic Gradient Descent (SGD) with Mean Squared Error (MSE) loss.
 * **No External Dependencies**: Uses only the C++ Standard Library.
@@ -56,18 +56,3 @@ $$\frac{\partial E}{\partial X} = \frac{\partial E}{\partial Y} \cdot W^T$$
 
 ---
 
-## 🛠️ Getting Started
-
-### Prerequisites
-* C++ Compiler (C++17 or higher recommended)
-* `g++`, `clang`, or MSVC
-
-### Build Instructions
-Clone the repository and compile using g++:
-
-```bash
-# Compile all source files
-g++ -std=c++17 main.cpp src/*.cpp -o neural_net
-
-# Run the executable
-./neural_net

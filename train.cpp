@@ -25,8 +25,16 @@ std::vector<std::vector<std::vector<double>>> trainingSetY = {
 int epochs = 10000;
 double learning_rate = 0.01;
 
-std::vector<Layer*> neuralNet;
+std::vector<Layer*> neuralNet = {
+    new Dense(4,10), 
+    new activationLayer("ReLU"), 
+    new Dense(10, 1), 
+    new activationLayer("Sigmoid")
+};
 
 
 
 //training loop
+int main(){
+    return 0;
+}

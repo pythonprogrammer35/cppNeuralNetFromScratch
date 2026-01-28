@@ -23,12 +23,13 @@ std::vector<std::vector<double>> matrixMult(std::vector<std::vector<double>> vec
     return result;
 }
 
-std::vector<std::vector<double>> biasAdd(std::vector<std::vector<double>> vector1, std::vector<double> vector2){
+std::vector<std::vector<double>> biasAdd(std::vector<std::vector<double>> vector1, std::vector<std::vector<double>> vector2){
     std::vector<std::vector<double>> result = vector1;
-
-    for (int i = 0; i<vector1.size(); i++){
-        for(int j = 0; j<vector1[0].size(); j++){
-            vector1[i][j] += vector2[j];
+    for(int k = 0; k<vector2.size(); k++){
+        for (int i = 0; i<vector1.size(); i++){
+            for(int j = 0; j<vector1[0].size(); j++){
+                vector1[i][j] += vector2[k][j];
+            }
         }
     }
     return result;
@@ -43,6 +44,53 @@ std::vector<std::vector<double>> transpose(std::vector<std::vector<double>> matr
         }
     }
     return result;
+}
+//each value of matrix1 times factor
+std::vector<std::vector<double>> elementMulti(std::vector<std::vector<double>> matrix1, double factor){
+    std::vector<std::vector<double>> result(matrix1.size(), std::vector<double>(matrix1[0].size(), 0));
+
+    for(int i = 0; i<matrix1.size(); i++){
+        for(int j = 0; j<matrix1[0].size(); j++){
+            result[i][j] = matrix1[i][j] * factor;
+        }
+    }
+    return result;
+}
+//matrix1 * matrix2
+std::vector<std::vector<double>> elementMatrixMulti(std::vector<std::vector<double>> matrix1, std::vector<std::vector<double>> matrix2){
+    std::vector<std::vector<double>> result(matrix1.size(), std::vector<double>(matrix1[0].size(), 0));
+
+    for(int i = 0; i<matrix1.size(); i++){
+        for(int j = 0; j<matrix1[0].size(); j++){
+            result[i][j] = matrix1[i][j] * matrix2[i][j];
+        }
+    }
+    return result;
+}
+//matrix1 - matrix2
+std::vector<std::vector<double>> elementSubtract(std::vector<std::vector<double>> matrix1, std::vector<std::vector<double>> matrix2){
+    std::vector<std::vector<double>> result(matrix1.size(), std::vector<double>(matrix1[0].size(), 0));
+
+    for(int i = 0; i<matrix1.size(); i++){
+        for(int j = 0; j<matrix1[0].size(); j++){
+            result[i][j] = matrix1[i][j] - matrix2[i][j];
+        }
+    }
+    return result;
+}
+void printMatrix(std::vector<std::vector<double>> inputMatrix){
+    std::string holder = "";
+    std::string holder2 = "{";
+    for (int i = 0; i<inputMatrix.size(); i++){
+        for(int j = 0; j<inputMatrix[0].size(); j++){
+            holder2 += std::to_string(inputMatrix[i][j]);
+            holder2 += ",";
+        }
+        holder += holder2;
+        holder += "}";
+        holder2 = "{";
+    }
+    std::cout << holder;
 }
 
 /*int main(){

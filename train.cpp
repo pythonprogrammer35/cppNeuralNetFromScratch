@@ -87,7 +87,10 @@ int main(){
         {{1,0,0,0}},
         {{1,1,0,0}},
         {{0,1,0,0}},
-        {{0,0,1,0}}
+        {{0,0,1,0}},
+        {{1,0,0,1}},
+        {{0,0,1,1}},
+        {{1,0,1,1}}
     };
 
     std::vector<std::vector<std::vector<double>>> trainingSetY = {
@@ -95,10 +98,13 @@ int main(){
         {{1}},
         {{0}},
         {{0}},
+        {{1}},
+        {{0}},
+        {{1}}
     };
 
-    int epochs = 10000;
-    double learning_rate = 0.01;
+    int epochs = 50000;
+    double learning_rate = 0.001;
 
     std::vector<Layer*> neuralNet = {
         new Dense(4,20), 
@@ -118,7 +124,7 @@ int main(){
 
     //testing portion
     std::vector<std::vector<double>> testInput = {
-        {1,0,0,1}
+        {1,1,0,1}
     };
 
     std::vector<std::vector<double>> returnedOutput = passThroughNeuralNetForward(neuralNet, testInput);

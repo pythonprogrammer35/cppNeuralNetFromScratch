@@ -7,12 +7,22 @@
 #include "activationLayer.cpp"
 #include "denseLayer.cpp"
 #include "Layer.cpp"
+#include "errorCalc.cpp"
 
 
 
-
-
+/*
 //training loop
+void trainingLoop(std::vector<*Layer> neuralNet, std::vector<std::vector<std::vector<double>>> trainingSetX, std::vector<std::vector<std::vector<double>>> trainingSetY, int epochs, double learning_rate){
+
+}
+
+passThroughNeuralNet
+
+std::vector<std::vector<double>> testingLoop(){
+
+}*/
+
 int main(){
     std::vector<std::vector<std::vector<double>>> trainingSetX = {
         {{1,0,0,0}},
@@ -28,7 +38,7 @@ int main(){
         {{0}}
     };
 
-    int epochs = 10000;
+    int epochs = 10001;
     double learning_rate = 0.01;
 
     std::vector<Layer*> neuralNet = {
@@ -46,18 +56,25 @@ int main(){
         for(int j = 0; j<trainingSetX.size(); j++){
             output = trainingSetX[j];
             for(int k = 0; k < neuralNet.size(); k++){
-                output = neuralNet[k].forward(output);
+                output = neuralNet[k]->forward(output);
             }
-            error = MSE(trainingSetY[j],output);
+            error += MSE(trainingSetY[j],output);
 
-            gradients = MSEDeriv(trainingSetY[j], output);
+            gradients = MSEDerivative(trainingSetY[j], output);
 
             for(int k = neuralNet.size()-1; k>=0; k--){
-                gradients = neuralNet[k].backward(gradients, learning_rate);
+                gradients = neuralNet[k]->backward(gradients, learning_rate);
             }
             
         }
-        
+        if(i % 100 == 0){
+            error = error/100;
+            std::cout<< "error: " << error << std::endl;
+            std::cout << "epoch: " << i << std::endl;
+            error = 0;
+        }
     }
+    //Maybe I can add a final error readout here later
+
     return 0;
 }

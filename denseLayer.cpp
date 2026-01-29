@@ -56,7 +56,7 @@ class Dense: public Layer{
         std::vector<std::vector<double>> forward(std::vector<std::vector<double>> input) override {
             this->input = input;
             std::vector<std::vector<double>> resultedMatrix = matrixMult(input, weights);
-            printMatrix(resultedMatrix);
+            //printMatrix(resultedMatrix);
             resultedMatrix = biasAdd(resultedMatrix, biases);
             return resultedMatrix;
             

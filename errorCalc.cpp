@@ -22,7 +22,7 @@ double MSE(std::vector<std::vector<double>> matrix1, std::vector<std::vector<dou
 std::vector<std::vector<double>> MSEDerivative(std::vector<std::vector<double>> matrix1, std::vector<std::vector<double>> matrix2){
     std::vector<std::vector<double>> result(matrix1.size(), std::vector<double>(matrix1[0].size(), 0));
     for(int i = 0; i<matrix1.size(); i++){
-        std::cout << "hey" << std::endl;
+        //std::cout << "hey" << std::endl;
         for(int j = 0; j<matrix1[0].size(); j++){
             result[i][j] = ((-2.0/matrix1.size())*(matrix1[i][j] - matrix2[i][j]));
         }

@@ -7,5 +7,6 @@ class Layer{
     
         virtual std::vector<std::vector<double>> backward(std::vector<std::vector<double>> output_gradient, double learning_rate) = 0;
 
+        virtual std::string getName() { return "Generic Layer"; }
         virtual ~Layer() {}
 };

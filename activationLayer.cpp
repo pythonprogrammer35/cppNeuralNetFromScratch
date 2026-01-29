@@ -87,5 +87,6 @@ class activationLayer: public Layer{
             }
             return input;
         }
+        virtual std::string getName() { return "Activation Layer"; }
 };
 

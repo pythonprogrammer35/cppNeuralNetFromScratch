@@ -98,6 +98,7 @@ class Dense: public Layer{
             }
             std::cout << holder;
         }
+        virtual std::string getName() override { return "Dense Layer"; }
 };
 /*
 int main(){

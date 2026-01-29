@@ -94,16 +94,18 @@ int main(){
         {{1}},
         {{1}},
         {{0}},
-        {{0}}
+        {{0}},
     };
 
     int epochs = 10000;
     double learning_rate = 0.01;
 
     std::vector<Layer*> neuralNet = {
-        new Dense(4,10), 
-        new activationLayer("ReLU"), 
-        new Dense(10, 1), 
+        new Dense(4,20), 
+        new activationLayer("Sigmoid"), 
+        new Dense(20,10),
+        new activationLayer("Sigmoid"), 
+        new Dense(10, 1),
         new activationLayer("Sigmoid")
     };
 
@@ -116,7 +118,7 @@ int main(){
 
     //testing portion
     std::vector<std::vector<double>> testInput = {
-        {0,0,1,0}
+        {1,0,0,1}
     };
 
     std::vector<std::vector<double>> returnedOutput = passThroughNeuralNetForward(neuralNet, testInput);

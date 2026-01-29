@@ -84,34 +84,46 @@ int main(){
 
     */
     std::vector<std::vector<std::vector<double>>> trainingSetX = {
+        //Group A
         {{1,0,0,0}},
         {{1,1,0,0}},
         {{0,1,0,0}},
         {{0,0,1,0}},
+        {{1,0,1,0}},
+        {{0,1,1,0}},
+        //Group B
         {{1,0,0,1}},
         {{0,0,1,1}},
-        {{1,0,1,1}}
+        {{1,0,1,1}},
+        {{0,1,0,1}},
+        {{1,1,0,1}},
+        {{1,20,18,0}}
     };
-
+    //Left is on, right is off
     std::vector<std::vector<std::vector<double>>> trainingSetY = {
-        {{1}},
-        {{1}},
-        {{0}},
-        {{0}},
-        {{1}},
-        {{0}},
-        {{1}}
+        //Group A output
+        {{1,0}},
+        {{1,0}},
+        {{0,1}},
+        {{0,1}},
+        {{1,0}},
+        {{0,1}},
+        //Group B output
+        {{0,1}},
+        {{0,1}},
+        {{0,1}},
+        {{0,1}},
+        {{0,1}},
+        {{1,0}}
     };
 
-    int epochs = 50000;
-    double learning_rate = 0.001;
+    int epochs = 10000;
+    double learning_rate = 0.1;
 
     std::vector<Layer*> neuralNet = {
-        new Dense(4,20), 
+        new Dense(4,10),
         new activationLayer("Sigmoid"), 
-        new Dense(20,10),
-        new activationLayer("Sigmoid"), 
-        new Dense(10, 1),
+        new Dense(10, 2),
         new activationLayer("Sigmoid")
     };
 
@@ -124,7 +136,7 @@ int main(){
 
     //testing portion
     std::vector<std::vector<double>> testInput = {
-        {1,1,0,1}
+        {1,1,1,0}
     };
 
     std::vector<std::vector<double>> returnedOutput = passThroughNeuralNetForward(neuralNet, testInput);

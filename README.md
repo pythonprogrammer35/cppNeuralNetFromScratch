@@ -56,3 +56,5 @@ $$\frac{\partial E}{\partial X} =  W \cdot \frac{\partial E}{\partial Y}^T$$ and
 
 ---
 
+## Installation and Testing
+git clone the repository and run the train.cpp file. Then run the train executable which is done with ./train 

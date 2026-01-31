@@ -83,7 +83,7 @@ void printMatrix(std::vector<std::vector<double>> inputMatrix){
     std::string holder = "";
     std::string holder2 = "{";
     for (int i = 0; i<inputMatrix.size(); i++){
-        for(int j = 0; j<inputMatrix[0].size(); j++){
+        for(int j = 0; j<inputMatrix[i].size(); j++){
             holder2 += std::to_string(inputMatrix[i][j]);
             holder2 += ",";
         }
@@ -94,10 +94,27 @@ void printMatrix(std::vector<std::vector<double>> inputMatrix){
     std::cout << holder;
 }
 
-/*int main(){
+std::vector<std::vector<double>> reflectMatrixXY(std::vector<std::vector<double>> matrix){
+    std::vector<std::vector<double>> result(matrix.size(), std::vector<double>(matrix[0].size(), 0.0));
+
+    //Over the X axis
+    int secondPointerX = matrix[0].size()-1;
+    int secondPointerY = matrix.size()-1;
+    for(int i = 0; i < matrix.size(); i++){
+        for(int j = 0; j < matrix[0].size(); j++){
+            result[secondPointerY][secondPointerX] = matrix[i][j];
+            secondPointerX -= 1;
+        }
+        secondPointerX = matrix[0].size()-1;
+        secondPointerY -= 1;
+    }
+    return result;
+}
+
+int main(){
     std::vector<std::vector<double>> tester1 = {
-        {3,2,1},
-        {4,3,2}
+        {1,2},
+        {-1,0}
         
     };
     std::vector<std::vector<double>> tester2 = {
@@ -105,34 +122,9 @@ void printMatrix(std::vector<std::vector<double>> inputMatrix){
         {2,6,2},
         {3,3,2}
     };
-    std::vector<std::vector<double>> output = transpose(tester1);
+    std::vector<std::vector<double>> output = reflectMatrixXY(tester1);
 
-    std::string holder = "";
-    std::string holder2 = "{";
-    for (int i = 0; i<output.size(); i++){
-        for(int j = 0; j<output[0].size(); j++){
-            holder2 += std::to_string(output[i][j]);
-            holder2 += ",";
-        }
-        holder += holder2;
-        holder += "}";
-        holder2 = "{";
-    }
-    std::cout << holder;
+    printMatrix(output);
+    
 
-    output = transpose(output);
-
-    holder = "";
-    holder2 = "{";
-    for (int i = 0; i<output.size(); i++){
-        for(int j = 0; j<output[0].size(); j++){
-            holder2 += std::to_string(output[i][j]);
-            holder2 += ",";
-        }
-        holder += holder2;
-        holder += "}";
-        holder2 = "{";
-    }
-    std::cout << holder;
-
-}*/
+}

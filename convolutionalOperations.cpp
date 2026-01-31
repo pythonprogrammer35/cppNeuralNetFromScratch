@@ -31,7 +31,7 @@ std::vector<std::vector<double>> crossCorrelation(std::vector<std::vector<double
     }
     return result;
 }
-
+/*
 int main(){
     std::vector<std::vector<double>> inputOne = {
         {1,2,3},
@@ -51,8 +51,4 @@ int main(){
     printMatrix(output);
 
     return 0;
-<<<<<<< HEAD
-}
-=======
-}
->>>>>>> 9c7417a6bcd0e9c4bb680b155e50b46b37f7f042
+}*/

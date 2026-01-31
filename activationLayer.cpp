@@ -79,14 +79,14 @@ class activationLayer: public Layer{
             for(int i = 0; i<input.size(); i++){
                 for(int j = 0; j<input[0].size(); j++){
                     if(input[i][j] > 0){
-                        input[i][j] == 1;
+                        input[i][j] = 1;
                     } else if (input[i][j] <= 0){
-                        input[i][j] == 0;
+                        input[i][j] = 0;
                     }
                 }
             }
             return input;
         }
-        virtual std::string getName() { return "Activation Layer"; }
+        virtual std::string getName() override { return "Activation Layer"; }
 };
 

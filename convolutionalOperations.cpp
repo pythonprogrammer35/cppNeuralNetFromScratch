@@ -51,4 +51,8 @@ int main(){
     printMatrix(output);
 
     return 0;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 9c7417a6bcd0e9c4bb680b155e50b46b37f7f042

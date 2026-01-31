@@ -80,7 +80,8 @@ void trainingLoop(std::vector<Layer*>& neuralNet, std::vector<std::vector<std::v
 
 int main(){
     /*The hidden rule for this XOR type game is that if the index of the 
-    * first column is a 1, the output is a one. If it is a 0, the output is a zero.
+    * first column is a 1, the output is a one. If it is a 0, the output is a zero, but if the last column is a 1, it acts as a kill switch
+    * and the output is a zero.
 
     */
     std::vector<std::vector<std::vector<double>>> trainingSetX = {
@@ -136,7 +137,7 @@ int main(){
 
     //testing portion
     std::vector<std::vector<double>> testInput = {
-        {1,1,1,0}
+        {1,1,1,1}
     };
 
     std::vector<std::vector<double>> returnedOutput = passThroughNeuralNetForward(neuralNet, testInput);

@@ -112,7 +112,7 @@ class convolutionalLayer: public Layer{
 
         virtual std::string getName() { return "Convolutional Layer"; }
 };
-
+/*
 int main(){
     std::vector<int> input_dimensions = {1,28,28};
     convolutionalLayer layer(input_dimensions, 3, 5);
@@ -121,4 +121,4 @@ int main(){
 
 
     return 0;
-}
+}*/

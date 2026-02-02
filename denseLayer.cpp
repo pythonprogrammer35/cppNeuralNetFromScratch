@@ -119,7 +119,7 @@ int main(){
     layer.printWeights();
     std::cout << "heeey";
     //printMatrix(holder);
-    */
+    
     
 
-}
+}*/

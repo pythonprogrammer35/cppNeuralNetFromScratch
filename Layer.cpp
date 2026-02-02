@@ -19,8 +19,17 @@ class Layer{
             return holder;
         }
 
-        //4D functions(for Convolution)
-        
+        //3D functions(for Convolution)
+        virtual Vector3D forward(Vector3D input){
+            Vector3D holder;
+            return holder;
+        };
+    
+        virtual Vector3D backward(Vector3D output_gradient, double learning_rate){
+            Vector3D holder;
+            return holder;
+        }
+        //4D functions just in case
         virtual Vector4D forward(Vector4D input){
             Vector4D holder;
             return holder;

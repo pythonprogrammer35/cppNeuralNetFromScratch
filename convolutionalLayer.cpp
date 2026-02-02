@@ -18,6 +18,7 @@ class convolutionalLayer: public Layer{
         int input_depth;
         int input_length;
         int input_width;
+        std::vector<std::vector<std::vector<double>>> currentInput;
         
 
         convolutionalLayer(std::vector<int> input_shape, int kernel_shape, int output_depth){
@@ -30,14 +31,14 @@ class convolutionalLayer: public Layer{
         }
         std::vector<std::vector<double>> input;
         //go through each kernel in the kernel matrix and cross correlate them with the matrix1
-        std::vector<std::vector<std::vector<std::vector<double>>>> forward(std::vector<std::vector<double>> matrix1) {
-            std::vector<std::vector<std::vector<std::vector<double>>>> holder;
-            this->input = matrix1;
+        std::vector<std::vector<std::vector<double>>> forward(std::vector<std::vector<std::vector<double>>> matrix1) {
+            std::vector<std::vector<std::vector<double>>> holder;
+            this->currentInput = matrix1;
             return holder;
             
         }
-        std::vector<std::vector<std::vector<std::vector<double>>>> backward(std::vector<std::vector<std::vector<double>>> output_gradient, double learning_rate) {
-            std::vector<std::vector<std::vector<std::vector<double>>>> holder;
+        std::vector<std::vector<std::vector<double>>> backward(std::vector<std::vector<std::vector<double>>> output_gradient, double learning_rate) {
+            std::vector<std::vector<std::vector<double>>> holder;
             return holder;
         }
 
@@ -112,7 +113,7 @@ class convolutionalLayer: public Layer{
 
         virtual std::string getName() { return "Convolutional Layer"; }
 };
-/*
+
 int main(){
     std::vector<int> input_dimensions = {1,28,28};
     convolutionalLayer layer(input_dimensions, 3, 5);
@@ -121,4 +122,4 @@ int main(){
 
 
     return 0;
-}*/
+}

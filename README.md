@@ -16,6 +16,7 @@ The goal of this project is to demystify the "black box" of AI by manually imple
     * **ReLU**: With He Initialization for hidden layers.
 * **Optimization**: Stochastic Gradient Descent (SGD) with Mean Squared Error (MSE) loss.
 * **No External Dependencies**: Uses only the C++ Standard Library.
+* **Plans for the Future**: Implement Convolutional Layers and CUDA optimization to allow for GPU assisted GEMM
 
 ---
 

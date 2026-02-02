@@ -53,7 +53,7 @@ class Dense: public Layer{
         }
 
 
-        std::vector<std::vector<double>> forward(std::vector<std::vector<double>> input) override {
+        std::vector<std::vector<double>> forward(std::vector<std::vector<double>> input) {
             this->input = input;
             std::vector<std::vector<double>> resultedMatrix = matrixMult(input, weights);
             //printMatrix(resultedMatrix);
@@ -62,7 +62,7 @@ class Dense: public Layer{
             
         }
         //might change later if needed
-        std::vector<std::vector<double>> backward(std::vector<std::vector<double>> derivativeYMatrix, double learning_rate) override {
+        std::vector<std::vector<double>> backward(std::vector<std::vector<double>> derivativeYMatrix, double learning_rate) {
             std::vector<std::vector<double>> derivativeXMatrix = matrixMult(weights, transpose(derivativeYMatrix));
             std::vector<std::vector<double>> derivativeWMatrix = matrixMult(transpose(this->input),derivativeYMatrix);
             derivativeWMatrix = elementMulti(derivativeWMatrix, learning_rate);
@@ -104,6 +104,7 @@ class Dense: public Layer{
 int main(){
     Dense layer(4,10);
     layer.printWeights();
+    
     std::cout << " " << std::endl;
     //layer.printBiases();
     std::vector<std::vector<double>> input = {
@@ -114,10 +115,11 @@ int main(){
         {0,0,1,0,0,0,0,0,0,0},   
     };
     layer.forwardPass(input);
-    std::vector<std::vector<double>> holder = layer.backwardPass(output, 0.001);
+    //std::vector<std::vector<double>> holder = layer.backwardPass(output, 0.001);
     layer.printWeights();
     std::cout << "heeey";
-    printMatrix(holder);
+    //printMatrix(holder);
+    */
     
 
-}*/
+}

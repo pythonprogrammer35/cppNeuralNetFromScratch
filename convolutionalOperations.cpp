@@ -104,7 +104,7 @@ std::vector<std::vector<double>> fullConvolution(std::vector<std::vector<double>
 }
 
 
-/*
+
 int main(){
     std::vector<std::vector<double>> inputOne = {
         {1,2},
@@ -123,4 +123,4 @@ int main(){
     printMatrix(output);
 
     return 0;
-}*/
+}

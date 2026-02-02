@@ -110,7 +110,7 @@ std::vector<std::vector<double>> reflectMatrixXY(std::vector<std::vector<double>
     }
     return result;
 }
-
+/*
 int main(){
     std::vector<std::vector<double>> tester1 = {
         {1,2},
@@ -128,3 +128,4 @@ int main(){
     
 
 }
+*/

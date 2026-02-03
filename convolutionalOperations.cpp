@@ -102,6 +102,17 @@ std::vector<std::vector<double>> fullConvolution(std::vector<std::vector<double>
     };
     return output;
 }
+//Matrixes must be the same size
+std::vector<std::vector<double>> matrixElementAdd(std::vector<std::vector<double>> matrix1, std::vector<std::vector<double>> matrix2){
+    std::vector<std::vector<double>> result(matrix1.size(), std::vector(matrix1[0].size(), 0.0));
+
+    for(int i = 0; i < matrix1.size(); i++){
+        for(int j = 0; j < matrix1[i].size(); j++){
+            result[i][j] = matrix1[i][j] + matrix2[i][j];
+        }
+    }
+    return result;
+}
 
 
 
@@ -117,7 +128,7 @@ int main(){
     };
     //double bias = 7.0;
 
-    std::vector<std::vector<double>> output = fullConvolution(inputOne, inputTwo);
+    std::vector<std::vector<double>> output = matrixElementAdd(inputOne, inputTwo);
 
     std::cout << "Result " << std::endl;
     printMatrix(output);
